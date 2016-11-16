@@ -49,41 +49,41 @@ var xhrRequest = function (url, type, callback) {
 //   );
 // }
 
-// function locationSuccess(pos) {
-//   // Construct URL
-//   var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" +
-//       pos.coords.latitude + "&lon=" + pos.coords.longitude + '&appid=' + myAPIKey + '&units=imperial';  
+function locationSuccess(pos) {
+  // Construct URL
+  var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" +
+      pos.coords.latitude + "&lon=" + pos.coords.longitude + '&appid=' + myAPIKey + '&units=imperial';  
 
-//   // Send request to OpenWeatherMap.org
-//   xhrRequest(weatherUrl, 'GET', 
-//     function(responseText) {
-//       var json = JSON.parse(responseText);
+  // Send request to OpenWeatherMap.org
+  xhrRequest(weatherUrl, 'GET', 
+    function(responseText) {
+      var json = JSON.parse(responseText);
             
-//       // Delivered in imperial so no need for adjustment
-//       var temp = Math.round(json.main.temp);
-//       console.log("Temperature is " + temp);   
+      // Delivered in imperial so no need for adjustment
+      var temp = Math.round(json.main.temp);
+      console.log("Temperature is " + temp);   
       
-//       var icon = json.weather[0].icon;
-//       console.log("Icon is " + icon);
+      var icon = json.weather[0].icon;
+      console.log("Icon is " + icon);
       
-//       // assemble dictionary using keys
-//       var dictionary = {
-//         "KEY_TEMP": temp,
-//         "KEY_ICON": icon,
-//       };
+      // assemble dictionary using keys
+      var dictionary = {
+        "KEY_TEMP": temp,
+        "KEY_ICON": icon,
+      };
 
-//       // Send to Pebble
-//       Pebble.sendAppMessage(dictionary,
-//         function(e) {
-//           console.log("Weather info sent to Pebble successfully!");
-//         },
-//         function(e) {
-//           console.log("Error sending weather info to Pebble!");
-//         }
-//       );
-//     }      
-//   );
-// }
+      // Send to Pebble
+      Pebble.sendAppMessage(dictionary,
+        function(e) {
+          console.log("Weather info sent to Pebble successfully!");
+        },
+        function(e) {
+          console.log("Error sending weather info to Pebble!");
+        }
+      );
+    }      
+  );
+}
 
 function locationError(err) {
   console.log("Error requesting location!");
