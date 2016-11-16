@@ -13,6 +13,13 @@
 //
 //
 // *****
+//
+//
+// 1.7
+// Switched back to OpenWeatherMap.org because I hit the limit of DarkSky.net in a day.  DOH!
+//
+//
+// *****
 
 
 #include <pebble.h>
